@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido Especial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom right, #ff99cc, #ff66cc);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      transition: all 0.5s ease;
+    }
+    #container {
+      text-align: center;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #ff33cc;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #ff66ff;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Login para Aprovação</h1>
+    <p>Digite o seu nome:</p>
+    <input type="text" id="username" placeholder="Seu nome aqui">
+    <br>
+    <button onclick="validateLogin()">Entrar</button>
+  </div>
+
+  <div id="aprovado" class="hidden">
+    <h1>Estamos Namorando! ❤️</h1>
+    <p>Obrigado por aceitar minha vida! Já posso marcar o casamento??</p>
+  </div>
+
+  <div id="negado" class="hidden">
+    <h1 style="color: red;">Negado</h1>
+    <p>Infelizmente, você não é a Adryelle :c.</p>
+    <button onclick="tryAgain()">Tente novamente</button>
+  </div>
+
+  <script>
+    function validateLogin() {
+      const username = document.getElementById("username").value.toLowerCase();
+      const container = document.getElementById("container");
+      const aprovado = document.getElementById("aprovado");
+      const negado = document.getElementById("negado");
+
+      if (username.startsWith("adryelle")) {
+        container.classList.add("hidden");
+        aprovado.classList.remove("hidden");
+        document.body.style.background = "linear-gradient(to bottom right, #ff99cc, #ff3399)";
+        // Abre o link após aprovação
+        setTimeout(() => {
+          window.open("https://www.youtube.com/shorts/rSqP0AgejyM", "_blank");
+        }, 4000);
+      } else {
+        container.classList.add("hidden");
+        negado.classList.remove("hidden");
+        document.body.style.background = "linear-gradient(to bottom right, #333, #111)";
+      }
+    }
+
+    function tryAgain() {
+      const container = document.getElementById("container");
+      const negado = document.getElementById("negado");
+
+      container.classList.remove("hidden");
+      negado.classList.add("hidden");
+      document.body.style.background = "linear-gradient(to bottom right, #ff99cc, #ff66cc)";
+    }
+  </script>
+</body>
+</html>
